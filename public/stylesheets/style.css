@@ -6,3 +6,19 @@ body {
 a {
   color: #00B7FF;
 }
+
+.background_video {
+  z-index: -1;
+  overflow: hidden;
+  display: block;
+}
+
+.fullscreen {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto!important;
+  height: auto!important;
+}
