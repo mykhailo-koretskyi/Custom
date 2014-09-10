@@ -4,5 +4,11 @@
 		"user":"cc",
 		"password":"story",
 		"database":"story_db"
+	},
+	"session": {
+		"secret": "Customizator",
+		"cookie": {
+			"maxAge": 3600000
+		}
 	}
 }
