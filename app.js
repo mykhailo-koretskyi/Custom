@@ -2,6 +2,7 @@
 /**
  * Module dependencies.
  */
+var swig = require('swig');
 var config = require('./conf/config');
 var express = require('express');
 var routes = require('./routes');
@@ -15,9 +16,10 @@ var LocalStrategy = require('passport-local').Strategy;
 var app = express();
 
 // all environments
+app.engine('html', swig.renderFile);
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'html');
 
 app.configure(function() {
 	app.use(express.favicon());
