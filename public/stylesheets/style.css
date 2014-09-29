@@ -1,6 +1,8 @@
 body {
-  padding: 50px;
+  padding: 0px;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgba(151, 220, 149, 0.1);
 }
 
 a {
@@ -22,3 +24,21 @@ a {
   width: auto!important;
   height: auto!important;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+}
+header {
+    position: fixed;
+    top:0;
+    height: 50px;
+    width: 100%;
+}
+div#content {
+    margin-top: 50px;
+}
+
+
