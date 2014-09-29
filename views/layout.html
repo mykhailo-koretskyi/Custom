@@ -12,7 +12,21 @@
 	    <script type="text/javascript" src="scripts/dev/jquery.textillate.js" async></script>	
 	</head>
 	<body>
-		{% block content %}
-		{% endblock %}
+        {% block header %}
+            <header>
+            <div>HEADER</div>
+            <hr/>
+            </header>
+        {% endblock %}
+
+		{% block content %}{% endblock %}
+        
+        {% block footer %}
+            <footer>
+            <hr/>
+            <div>FOOTER</div>
+            </footer>
+        {% endblock %}
 	</body>
 </html>
+
