@@ -10,5 +10,8 @@
 		"cookie": {
 			"maxAge": 3600000
 		}
-	}
+	},
+    "media": {
+        "path": "/pub/media"
+    }
 }

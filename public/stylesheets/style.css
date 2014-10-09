@@ -1,6 +1,7 @@
 body {
   padding: 0px;
   margin: 0;
+  background-color: rgb(140,204,221);
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -8,7 +9,7 @@ a {
   color: #00B7FF;
 }
 
-.background_video {
+.background {
   z-index: -1;
   overflow: hidden;
   display: block;
@@ -17,6 +18,11 @@ a {
 .fullscreen {
   width: 100%;
   height: 100%;
+}
+
+.wh_50 {
+    width:50px;
+    height:50px;
 }
 
 footer {
@@ -32,4 +38,29 @@ header {
     width: 100%;
 }
 
+.hidden {
+    display: none;
+}
 
+.center {
+    display: table;
+    margin: 70px auto;
+}
+
+.MgLR5 {
+    margin: 0px, 5px;
+}
+
+.PdLR5 {
+    padding: 0px 5px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.hexagon {
+    width:250px;
+    height:250px;
+    background-size:contain;
+}
