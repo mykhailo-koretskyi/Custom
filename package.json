@@ -18,6 +18,7 @@
 	"passport-google":"0.3.0",
 	"passport-facebook":"1.0.3",
 	"passport-local":"1.0.0",
-	"require-directory":"2.0.0"
+	"require-directory":"2.0.0",
+    "i18n": "0.5.0"
   }
 }
