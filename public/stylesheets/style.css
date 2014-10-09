@@ -59,3 +59,8 @@ header {
     display: inline-block;
 }
 
+.hexagon {
+    width:250px;
+    height:250px;
+    background-size:contain;
+}
