@@ -6,6 +6,7 @@ var swig = require('swig');
 var config = require('./conf/config');
 var express = require('express');
 var routes = require('./routes');
+var i18n = require('i18n');
 var user = require('./lib/model/user');
 var control = require('./lib/control');
 var http = require('http');
@@ -21,6 +22,11 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
+i18n.configure({
+    locales:['ua', 'en'],
+    directory: __dirname + '/locales'
+});
+
 app.configure(function() {
 	app.use(express.favicon());
 	app.use(express.logger('dev'));
@@ -34,6 +40,7 @@ app.configure(function() {
 	app.use(passport.session());
 	app.use(app.router);
 	app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(config.media.path));
 });
 
 passport.use(new LocalStrategy(
