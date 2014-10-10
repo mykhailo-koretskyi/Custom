@@ -1,1 +1,7 @@
-{}
+{
+    "signup":"Sign up",
+    "password":"Password",
+    "rePassword":"Reinsert password",
+    "email":"E-mail",
+    "cancel":"Cancel"
+}

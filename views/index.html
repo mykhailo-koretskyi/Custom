@@ -2,13 +2,40 @@
 
 {% block content %}
 <div class="center">
-    <div class="hexagon" style="background-image: url(img/6angle.svg);"></div>
+    <div class="hexagon" style="background-image: url(img/hex_solid_white.svg);"></div>
+</div>
+
+<div class="hidden" id="signup_form" style="background-image:url(/img/hex_solid_purple.svg)">
+    <form method="POST" action="/signup">
+        <h1 class="grey"><b>{{ tu.signup }}</b></h1>
+        <input id="signup_email" type="email" required autofocus name="login" placeholder="{{ tu.email }}" style="background-image:url(/img/input_background.svg)"></input>
+        <input id="signup_password" type="password" required name="password" placeholder="{{ tu.password }}" style="background-image:url(/img/input_background.svg)"></input>
+        <input id="signup_rePassword" type="password" required name="rePassword" placeholder="{{ tu.rePassword }}" style="background-image:url(/img/input_background.svg)"></input>
+        <input type="button" value="{{ tu.signup }}" onclick="signup()"></input>
+        <br />
+        <a href="#" onclick="jQuery('#signup_form').hide(); jQuery('div#lightbox_shade').hide();">{{ tu.cancel }}</a>
+    </form>
+    <script type="text/javascript">
+        function signup(){
+            var params = {};
+            params.login = $("#signup_form input[name='login']").val();
+            params.password = $("#signup_form input[name='password']").val();
+            params.rePassword = $("#signup_form input[name='rePassword']").val();
+
+            var request = $.post('/signup', params, function(data, status, req){
+                    console.log(arguments);
+                    if (status == "success" && data.erNo == '0') {
+                        window.location = window.location + 'login';
+                    }
+                }, 'json');
+        }
+    </script>
 </div>
 {% endblock %}
 
-{% block footer %}
+{# block footer %}
 {% endblock %}
 
 {% block header %}
-{% endblock %}
+{% endblock #}
 

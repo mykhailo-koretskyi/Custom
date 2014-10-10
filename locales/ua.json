@@ -1,1 +1,7 @@
-{}
+{
+    "signup":"Регыстрацыя",
+    "password":"Пароль",
+    "rePassword":"Ще раз пароль",
+    "email":"E-mail",
+    "cancel":"Выдмова"
+}

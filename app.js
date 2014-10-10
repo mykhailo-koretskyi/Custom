@@ -7,7 +7,7 @@ var config = require('./conf/config');
 var express = require('express');
 var routes = require('./routes');
 var i18n = require('i18n');
-var user = require('./lib/model/user');
+var User = require('./lib/model/user');
 var control = require('./lib/control');
 var http = require('http');
 var path = require('path');
@@ -19,6 +19,7 @@ var app = express();
 // all environments
 app.engine('html', swig.renderFile);
 app.set('port', process.env.PORT || 3000);
+app.set('env', process.env.ENVIRONMENT || "development");
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
@@ -45,6 +46,7 @@ app.configure(function() {
 
 passport.use(new LocalStrategy(
      function(username, password, done) {
+        var user = new User();
         user.load(username, password, function (err, user) {
 			console.log(user);
             if (err) { return done(err); }
@@ -79,6 +81,7 @@ app.get('/logout', function(req,res){
 	req.logout();
 	res.redirect('/');
 });
+app.post('/signup', control.api.signup);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
