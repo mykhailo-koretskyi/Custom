@@ -25,8 +25,8 @@
         <header>
             {% block header %}
                 {% if !user %}
-                    <a href="/login">Login</a>
-                    <a href="#" onclick="jQuery('#signup_form').show(); jQuery('div#lightbox_shade').show();">Sign UP</a>
+                    <input type="button" value="Login"></input>
+                    <input type="button" value="Sign up" onclick="jQuery('#signup_form').show(); jQuery('div#lightbox_shade').show();"></input>
                 {% else %}
                     <span>You are loged in as {{ user.name }}</span>
                     <a href="/logout">Log out</a>

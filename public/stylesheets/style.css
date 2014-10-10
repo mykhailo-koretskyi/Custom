@@ -2,11 +2,15 @@ body {
   padding: 0px;
   margin: 0;
   background-color: rgb(140,204,221);
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Myriad Pro";
 }
 
 a {
   color: #00B7FF;
+}
+
+.grey {
+    color:rgb(195, 195, 195);
 }
 
 .background {
@@ -38,6 +42,11 @@ header {
     width: 100%;
 }
 
+div#content {
+    width: 80%;
+    margin: 0 auto;
+}
+
 .hidden {
     display: none;
 }
@@ -55,12 +64,68 @@ header {
     padding: 0px 5px;
 }
 
+.MgBot20 {
+    margin-bottom:20px;
+}
+
 .inline {
     display: inline-block;
 }
 
 .hexagon {
     width:250px;
-    height:250px;
-    background-size:contain;
+    height:187px;
+    background-size:cover;
+}
+
+div#signup_form {
+    position:fixed;
+    top:102px;
+    left:465px;
+    width: 432px;
+    height: 460px;
+    z-index:101;
+    background-size:cover;
+}
+
+div#signup_form form {
+    text-align: center;
+    width: 80%;
+    height: 50%;
+    margin: 25% auto;
+}
+
+div#signup_form form input {
+    margin: 5px auto;
+    width: 250px;
+    height: 30px;
+    border:0 ;
+    border-radius:21px;
+    text-align: center;
+}
+
+div#signup_form form input[type=email],
+div#signup_form form input[type=password] {
+    background-size:;
+}
+
+div#signup_form form input[type=password]:focus,
+div#signup_form form input[type=email]:focus {
+    outline:none;
+}
+
+div#signup_form form input[type=button],
+div#signup_form form input[type=submit] {
+    width:150px;
+}
+
+div#lightbox_shade {
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    z-index:100;
+    background-color:black;
+    opacity:0.4;
 }

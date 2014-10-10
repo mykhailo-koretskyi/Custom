@@ -7,20 +7,29 @@
 
 <div class="hidden" id="signup_form" style="background-image:url(/img/hex_solid_purple.svg)">
     <form method="POST" action="/signup">
-        <div>
-            <label for="signup_email">E-mail: </label>
-            <input id="signup_email" type="text" name="login"></input>
-        </div>  
-        <div>
-            <label for="signup_password">Password: </label>
-            <input id="signup_password" type="password" name="password"></input>
-        </div>    
-            <label for="signup_rePassword">Reinsert password: </label>
-            <input id="signup_rePassword" type="password" name="rePassword"></input>
-            <input type="button" value="Sign UP" onclick="signup()"></input>
+        <h1 class="grey"><b>{{ tu.signup }}</b></h1>
+        <input id="signup_email" type="email" required autofocus name="login" placeholder="{{ tu.email }}" style="background-image:url(/img/input_background.svg)"></input>
+        <input id="signup_password" type="password" required name="password" placeholder="{{ tu.password }}" style="background-image:url(/img/input_background.svg)"></input>
+        <input id="signup_rePassword" type="password" required name="rePassword" placeholder="{{ tu.rePassword }}" style="background-image:url(/img/input_background.svg)"></input>
+        <input type="button" value="{{ tu.signup }}" onclick="signup()"></input>
         <br />
-        <a href="#" onclick="jQuery('#signup_form').hide(); jQuery('div#lightbox_shade').hide();">Cancel</a>
+        <a href="#" onclick="jQuery('#signup_form').hide(); jQuery('div#lightbox_shade').hide();">{{ tu.cancel }}</a>
     </form>
+    <script type="text/javascript">
+        function signup(){
+            var params = {};
+            params.login = $("#signup_form input[name='login']").val();
+            params.password = $("#signup_form input[name='password']").val();
+            params.rePassword = $("#signup_form input[name='rePassword']").val();
+
+            var request = $.post('/signup', params, function(data, status, req){
+                    console.log(arguments);
+                    if (status == "success" && data.erNo == '0') {
+                        window.location = window.location + 'login';
+                    }
+                }, 'json');
+        }
+    </script>
 </div>
 {% endblock %}
 
