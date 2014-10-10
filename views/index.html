@@ -4,43 +4,6 @@
 <div class="center">
     <div class="hexagon" style="background-image: url(img/hex_solid_white.svg);"></div>
 </div>
-
-<div class="hidden" id="signup_form" style="background-image:url(/img/hex_solid_purple.svg)">
-    <form method="POST" action="/signup">
-        <h1 class="grey"><b>{{ tu.signup }}</b></h1>
-        <input id="signup_email" type="email" required autofocus name="login" placeholder="{{ tu.email }}" style="background-image:url(/img/input_background.svg)"></input>
-        <input id="signup_password" type="password" required name="password" placeholder="{{ tu.password }}" style="background-image:url(/img/input_background.svg)"></input>
-        <input id="signup_rePassword" type="password" required name="rePassword" placeholder="{{ tu.rePassword }}" style="background-image:url(/img/input_background.svg)"></input>
-        <input type="button" value="{{ tu.signup }}" onclick="signup()"></input>
-        <input type="button" onclick="toggleSignupPopup()" value="{{ tu.cancel }}"></input>
-    </form>
-    <script type="text/javascript">
-        function toggleSignupPopup(){
-            jQuery('#signup_form').toggleClass('hidden'); 
-            jQuery('div#lightbox_shade').toggleClass('hidden');
-        }
-
-        function signup(){
-            var params = {};
-            params.login = $("#signup_form input[name='login']").val();
-            params.password = $("#signup_form input[name='password']").val();
-            params.rePassword = $("#signup_form input[name='rePassword']").val();
-
-            var request = $.post('/signup', params, function(data, status, req){
-                    console.log(arguments);
-                    if (status == "success" && data.erNo == '0') {
-                        window.location = window.location + 'login';
-                    }
-                }, 'json');
-        }
-        $(function(){
-            $(window).resize(function(){
-                var element = $("#signup_form");
-                element.offset({left: $(window).width()/2 - element.width()/2, top: 102} );
-            });
-        });
-    </script>
-</div>
 {% endblock %}
 
 {# block footer %}
