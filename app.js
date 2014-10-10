@@ -9,12 +9,14 @@ var routes = require('./routes');
 var i18n = require('i18n');
 var User = require('./lib/model/user');
 var control = require('./lib/control');
+var resources = require('./lib/model/resources');
 var http = require('http');
 var path = require('path');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
+require('express-debug')(app, {/* settings */});
 
 // all environments
 app.engine('html', swig.renderFile);
@@ -27,6 +29,8 @@ i18n.configure({
     locales:['ua', 'en'],
     directory: __dirname + '/locales'
 });
+
+app.use(resources.populateLocals);
 
 app.configure(function() {
 	app.use(express.favicon());

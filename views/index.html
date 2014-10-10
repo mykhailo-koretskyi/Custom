@@ -12,10 +12,14 @@
         <input id="signup_password" type="password" required name="password" placeholder="{{ tu.password }}" style="background-image:url(/img/input_background.svg)"></input>
         <input id="signup_rePassword" type="password" required name="rePassword" placeholder="{{ tu.rePassword }}" style="background-image:url(/img/input_background.svg)"></input>
         <input type="button" value="{{ tu.signup }}" onclick="signup()"></input>
-        <br />
-        <a href="#" onclick="jQuery('#signup_form').hide(); jQuery('div#lightbox_shade').hide();">{{ tu.cancel }}</a>
+        <input type="button" onclick="toggleSignupPopup()" value="{{ tu.cancel }}"></input>
     </form>
     <script type="text/javascript">
+        function toggleSignupPopup(){
+            jQuery('#signup_form').toggleClass('hidden'); 
+            jQuery('div#lightbox_shade').toggleClass('hidden');
+        }
+
         function signup(){
             var params = {};
             params.login = $("#signup_form input[name='login']").val();
@@ -29,6 +33,12 @@
                     }
                 }, 'json');
         }
+        $(function(){
+            $(window).resize(function(){
+                var element = $("#signup_form");
+                element.offset({left: $(window).width()/2 - element.width()/2, top: 102} );
+            });
+        });
     </script>
 </div>
 {% endblock %}
