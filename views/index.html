@@ -2,13 +2,31 @@
 
 {% block content %}
 <div class="center">
-    <div class="hexagon" style="background-image: url(img/6angle.svg);"></div>
+    <div class="hexagon" style="background-image: url(img/hex_solid_white.svg);"></div>
+</div>
+
+<div class="hidden" id="signup_form" style="background-image:url(/img/hex_solid_purple.svg)">
+    <form method="POST" action="/signup">
+        <div>
+            <label for="signup_email">E-mail: </label>
+            <input id="signup_email" type="text" name="login"></input>
+        </div>  
+        <div>
+            <label for="signup_password">Password: </label>
+            <input id="signup_password" type="password" name="password"></input>
+        </div>    
+            <label for="signup_rePassword">Reinsert password: </label>
+            <input id="signup_rePassword" type="password" name="rePassword"></input>
+            <input type="button" value="Sign UP" onclick="signup()"></input>
+        <br />
+        <a href="#" onclick="jQuery('#signup_form').hide(); jQuery('div#lightbox_shade').hide();">Cancel</a>
+    </form>
 </div>
 {% endblock %}
 
-{% block footer %}
+{# block footer %}
 {% endblock %}
 
 {% block header %}
-{% endblock %}
+{% endblock #}
 
