@@ -10,16 +10,13 @@ var i18n = require('i18n');
 var User = require('./lib/model/user');
 
 /////////////////////////////////////////////////
-////     Defining the routes
+////     Routes controllers
 ////////////////////////////////////////////////
 var home = require('./lib/control/home');
 var login = require('./lib/control/login');
 var signup = require('./lib/control/api/signup');
 
 
-
-
-var resources = require('./lib/model/resources');
 var http = require('http');
 var path = require('path');
 var passport = require('passport');
@@ -39,8 +36,6 @@ i18n.configure({
     locales:['ua', 'en'],
     directory: __dirname + '/locales'
 });
-
-app.use(resources.populateLocals);
 
 app.configure(function() {
 	app.use(express.favicon());
