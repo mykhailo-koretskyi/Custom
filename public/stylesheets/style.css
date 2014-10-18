@@ -34,12 +34,22 @@ footer {
     bottom: 0;
     height: 100px;
     width: 100%;
+    margin: 0 auto;
 }
 header {
     position: fixed;
     top:0;
     height: 50px;
     width: 100%;
+    margin:0 auto;
+}
+
+.floatLeft {
+    float:left;
+}
+
+.floatRight {
+    float:right;
 }
 
 div#content {
@@ -78,6 +88,11 @@ div#content {
     background-size:cover;
 }
 
+div#headerContainer {
+    width:80%;
+    margin:0 auto;
+}
+
 div#signup_form {
     position:fixed;
     top:102px;
@@ -95,18 +110,20 @@ div#signup_form form {
     margin: 25% auto;
 }
 
-div#signup_form form input {
+input[type=email],
+input[type=password] {
     margin: 5px auto;
-    width: 250px;
+    padding: 0 3px;
+    width: 150px;
     height: 30px;
     border:0 ;
     border-radius:21px;
     text-align: center;
 }
 
-div#signup_form form input[type=email],
-div#signup_form form input[type=password] {
-    background-size:;
+div#signup_form form input[type=password],
+div#signup_form form input[type=email] {
+    width:250px;
 }
 
 div#signup_form form input[type=password]:focus,
@@ -116,7 +133,17 @@ div#signup_form form input[type=email]:focus {
 
 div#signup_form form input[type=button],
 div#signup_form form input[type=submit] {
-    width:150px;
+    margin-top: 20px;
+}
+
+input[type=button],
+input[type=submit] {
+    width:100px;
+    margin-top:5px;
+    border:0 ;
+    border-radius:21px;
+    text-align: center;
+    height:25px;
 }
 
 div#lightbox_shade {

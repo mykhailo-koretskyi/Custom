@@ -24,13 +24,65 @@
 	<body>
         <header>
             {% block header %}
-                {% if !user %}
-                    <input type="button" value="Login"></input>
-                    <input type="button" value="Sign up" onclick="jQuery('#signup_form').show(); jQuery('div#lightbox_shade').show();"></input>
-                {% else %}
-                    <span>You are loged in as {{ user.name }}</span>
-                    <a href="/logout">Log out</a>
+                <div id="headerContainer">
+                    {% if !user %}
+                        <div id="leftNav" class="floatLeft">
+                            <span>Don`t have an account? </span><input type="button" value="Sign up" onclick="toggleSignupPopup()"></input>
+                        </div>
+                        <div id="rightNav" class="floatRight">
+                            <input type="email" required name="login" placeholder="{{ tu.email }}" style="background-image:url(/img/input_background.svg)"></input>
+                            <input type="password" required name="password" placeholder="{{ tu.password }}" style="background-image:url(/img/input_background.svg)"></input>
+                            <input type="button" value="Login"></input>
+                        </div>
+                    {% else %}
+                        <div id="rightNav" class="floatRight">
+                            <span>You are loged in as {{ user.name }}. </span>
+                            <a href="/logout">Log out</a>
+                        </div>
+                </div>
                 {% endif # if user %}
+                <div class="hidden" id="signup_form" style="background-image:url(/img/hex_solid_purple.svg)">
+                    <form method="POST" action="/signup">
+                        <h1 class="grey"><b>{{ tu.signup }}</b></h1>
+                        <input id="signup_email" type="email" required autofocus name="login" placeholder="{{ tu.email }}" style="background-image:url(/img/input_background.svg)"></input>
+                        <input id="signup_password" type="password" required name="password" placeholder="{{ tu.password }}" style="background-image:url(/img/input_background.svg)"></input>
+                        <input id="signup_rePassword" type="password" required name="rePassword" placeholder="{{ tu.rePassword }}" style="background-image:url(/img/input_background.svg)"></input>
+                        <input type="button" value="{{ tu.signup }}" onclick="signup()" style="background-image:url(/img/input_background2.svg)"></input>
+                        <input type="button" onclick="toggleSignupPopup()" value="{{ tu.cancel }}" style="background-image:url(/img/input_background2.svg)"></input>
+                    </form>
+                    <script type="text/javascript">
+                        function toggleSignupPopup(){
+                            jQuery('div#lightbox_shade').toggleClass('hidden');
+                            jQuery('#signup_form').toggleClass('hidden');
+                            $('#signup_form').trigger('resize');
+                        }
+
+                        function signup(){
+                            var params = {};
+                            params.login = $("#signup_form input[name='login']").val();
+                            params.password = $("#signup_form input[name='password']").val();
+                            params.rePassword = $("#signup_form input[name='rePassword']").val();
+
+                            var request = $.post('/signup', params, function(data, status, req){
+                                    console.log(arguments);
+                                    if (status == "success" && data.erNo == '0') {
+                                        window.location = window.location + 'login';
+                                    }
+                                }, 'json');
+                        }
+                        $(function(){
+                            $(window).resize(function(){
+                                console.log('Resize!!!');
+                                var element = $("#signup_form");
+                                console.log($(window).width());
+                                console.log(element.width());
+                                console.log({left: ($(window).width()/2) - (element.width()/2), top: 25});
+                                element.offset({left: ($(window).width()/2) - (element.width()/2), top: 25} );
+                            });
+                        });
+                    </script>
+                </div>
+                <div id="lightbox_shade" class="hidden"></div>
             {% endblock %}
         </header>
 
@@ -43,8 +95,6 @@
             {% block footer %}
             {% endblock %}
         </footer>
-
-        <div id="lightbox_shade" class="hidden"></div>
 	</body>
 </html>
 
