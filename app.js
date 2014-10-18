@@ -8,7 +8,17 @@ var express = require('express');
 var routes = require('./routes');
 var i18n = require('i18n');
 var User = require('./lib/model/user');
-var control = require('./lib/control');
+
+/////////////////////////////////////////////////
+////     Defining the routes
+////////////////////////////////////////////////
+var home = require('./lib/control/home');
+var login = require('./lib/control/login');
+var signup = require('./lib/control/api/signup');
+
+
+
+
 var resources = require('./lib/model/resources');
 var http = require('http');
 var path = require('path');
@@ -52,7 +62,6 @@ passport.use(new LocalStrategy(
      function(username, password, done) {
         var user = new User();
         user.load(username, password, function (err, user) {
-			console.log(user);
             if (err) { return done(err); }
             if (!user.id) {
                 return done(null, false, { message: 'Incorrect username or password.' }); 
@@ -73,8 +82,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', control.starting.home);
-app.get('/login', control.starting.login);
+app.get('/', function(req, res){home.run(req, res)});
+app.get('/login', function(req, res){login.run(req, res)});
 app.post('/login', 
 		passport.authenticate('local', 
 			{ 
@@ -85,7 +94,7 @@ app.get('/logout', function(req,res){
 	req.logout();
 	res.redirect('/');
 });
-app.post('/signup', control.api.signup);
+app.post('/signup', function(req, res){signup.run(req,res)});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
