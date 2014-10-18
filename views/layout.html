@@ -25,14 +25,16 @@
         <header>
             {% block header %}
                 <div id="headerContainer">
-                    {% if !user %}
+                    {% if !session.passport.user %}
                         <div id="leftNav" class="floatLeft">
                             <span>Don`t have an account? </span><input type="button" value="Sign up" onclick="toggleSignupPopup()"></input>
                         </div>
                         <div id="rightNav" class="floatRight">
-                            <input type="email" required name="login" placeholder="{{ tu.email }}" style="background-image:url(/img/input_background.svg)"></input>
-                            <input type="password" required name="password" placeholder="{{ tu.password }}" style="background-image:url(/img/input_background.svg)"></input>
-                            <input type="button" value="Login"></input>
+                            <form method="POST" action="/login">
+                                <input type="email" required name="username" placeholder="{{ tu.email }}" style="background-image:url(/img/input_background.svg)"></input>
+                                <input type="password" required name="password" placeholder="{{ tu.password }}" style="background-image:url(/img/input_background.svg)"></input>
+                                <input type="submit" value="Login"></input>
+                            </form>
                         </div>
                     {% else %}
                         <div id="rightNav" class="floatRight">
