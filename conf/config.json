@@ -13,5 +13,6 @@
 	},
     "media": {
         "path": "/pub/media"
-    }
+    },
+    "googleAnalytics": true
 }
