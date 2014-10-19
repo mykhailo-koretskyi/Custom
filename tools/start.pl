@@ -3,9 +3,9 @@
 my $user = $ENV{USER};
 
 system "cd .";
-system "forever stop app.js";
+system "forever stopall";
 system "npm install";
-system "npm start";
+system "forever start -v -a --minUptime=1000 --spinSleepTime=1000 app.js";
 
 print "\nBuild is DONE\n";
 
