@@ -15,6 +15,7 @@ var User = require('./lib/model/user');
 var home = require('./lib/control/home');
 var login = require('./lib/control/login');
 var signup = require('./lib/control/api/signup');
+var edit = require('./lib/control/edit');
 
 
 var http = require('http');
@@ -90,6 +91,15 @@ app.get('/logout', function(req,res){
 	res.redirect('/');
 });
 app.post('/signup', function(req, res){signup.run(req,res)});
+
+
+
+
+
+app.get("/edit", function(req,res){
+    edit.run(req,res);
+});
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
