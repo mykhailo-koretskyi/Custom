@@ -1,7 +1,51 @@
 {% extends 'workspace_layout.html' %}
 
 {% block content %}
-    <div><span>Here you go ..... again</span></div>
+
+    <div class="workspace-container" id="workspaceContainer">
+        <div class="bar-left span_11_of_12"></div>
+        <div class="bar-right span_1_of_12" id="barRight">
+            <div id="statusBar" class="marginTop35px" data-bind="foreach: statusBarElements">
+                <div class="statusBarElement">
+                    <img data-bind="attr: {src: urlToImg}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bar-bot" id="barBot">
+        <div id="toolBar" data-bind="foreach: toolBarElements">
+            <div class="toolBarElement" data-bind="css: { marginLeft35px: $index }">
+                <img data-bind="attr: {src: urlToImg}">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function getBarElements(type) {
+            $.ajax({
+                url : '/api/getBarElements?type='+type,
+                method : 'GET',
+                success : function(data){
+                    data = $.parseJSON(data);
+                    console.log(data);
+                    if (!data.error) {
+                        var script = 'barViewModel.'+type+'BarElements(data.payload);';
+                        eval(script);
+                    } else {
+                        //bad
+                    }
+                }
+            });
+        };
+        var barViewModel = {
+            statusBarElements : ko.observableArray([]),
+            toolBarElements : ko.observableArray([])
+        };
+        ko.applyBindings(barViewModel);
+        $(document).ready(function (){
+            getBarElements('tool');
+            getBarElements('status');
+        });
+    </script>
 {% endblock %}
 
 {% block footer %}
