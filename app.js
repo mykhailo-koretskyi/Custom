@@ -15,6 +15,7 @@ var User = require('./lib/model/user');
 var home = require('./lib/control/home');
 var login = require('./lib/control/login');
 var signup = require('./lib/control/api/signup');
+var getBarElements = require('./lib/control/api/getBarElements');
 var edit = require('./lib/control/edit');
 
 
@@ -99,7 +100,9 @@ app.post('/signup', function(req, res){signup.run(req,res)});
 app.get("/edit", function(req,res){
     edit.run(req,res);
 });
-
+app.get('/api/getBarElements', function(req,res){
+    getBarElements.run(req,res);
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
